@@ -7,15 +7,12 @@ ForEach-Object -Process {
 }
 # Importing Private functions
 . "${PSScriptRoot}\Private\ParseToANSI.ps1"
-# . "${PSScriptRoot}\Private\Resolve-DirectoryColor.ps1"
-# . "${PSScriptRoot}\Private\Resolve-FileColor.ps1"
-# . "${PSScriptRoot}\Private\Resolve-DirectoryIcon .ps1"
 
 # Path to the Icon Preferences for the current User
-$global:PathToIconPreferences = "C:\Users\adi\.config\shellconfigs\powershell_core\pwsh_core_terminal_icon_themes.json"
+$global:PathToIconPreferences
 
 # Path to the Color Preferences for the current User
-$global:PathToColorPreferences = "C:\Users\adi\.config\shellconfigs\powershell_core\pwsh_core_terminal_color_themes.json"
+$global:PathToColorPreferences 
 
 # HashTable containing all the Icons for Directories and Files are raw icons from NF (Nerd-Font)
 $global:AestheticConsoleIcons= @()
@@ -50,6 +47,51 @@ Function Set-Information {
     }
 }
 
+
+Function Update-UserPreferences {
+    $UserHashTable = @{
+        "PathToIcons"  = "$global:PathToIconPreferences" ;
+        "PathToColors" = "$global:PathToColorPreferences"
+    }
+    ( $UserHashTable | ConvertTo-JSON ) > "${PSScriptRoot}/Public/UserInfo.json"
+}
+
+Function Get-UserPreferences {
+    $UserHashTable = ( Get-Content "${PSScriptRoot}/Public/UserInfo.json" )  | ConvertFrom-JSON -AsHashtable
+    $global:PathToIconPreferences = $UserHashTable["PathToIcons"]
+    $global:PathToColorPreferences = $userHashTable["PathToColors"]
+}
+
+Function Set-IconsPath{
+    $CandidatePath = Read-Host -Prompt "Enter the path where the Icons customisation *.json is present"
+    $Successful= $PSStyle.Foreground.Green
+    if(Test-Path -Path $CandidatePath){
+        $global:PathToIconPreferences = $CandidatePath
+        Write-Output ($Successful+"Path of icon preferences succesfully to {0}" -f $global:PathToIconPreferences)
+        Update-UserPreferences
+    }
+    else {
+        Write-Error ("Path of icon preferences is not valid")
+    }
+}
+
+Function Set-ColorsPath{
+    $CandidatePath = Read-Host -Prompt "Enter the path where the Icons customisation *.json is present"
+    $Successful = $PSStyle.Foreground.Green
+    if (Test-Path -Path $CandidatePath) {
+        $global:PathToColorPreferences = $CandidatePath
+        Write-Output ($Successful + "Path of icon preferences succesfully to {0}" -f $global:PathToColorPreferences)
+        Update-UserPreferences
+    }
+    else {
+        Write-Error ("Path of icon preferences is not valid")
+    }
+}
+
+
+
+
+Get-UserPreferences
 Set-Information
 Update-FormatData -PrependPath "$PSScriptRoot\Aesthetic-Console.format.ps1xml"
 
