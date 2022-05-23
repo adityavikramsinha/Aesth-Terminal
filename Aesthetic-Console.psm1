@@ -12,7 +12,7 @@ ForEach-Object -Process {
 $global:PathToIconPreferences
 
 # Path to the Color Preferences for the current User
-$global:PathToColorPreferences 
+$global:PathToColorPreferences
 
 # HashTable containing all the Icons for Directories and Files are raw icons from NF (Nerd-Font)
 $global:AestheticConsoleIcons= @()
@@ -88,30 +88,12 @@ Function Set-ColorsPath{
     }
 }
 
-
-
-
 Get-UserPreferences
-Set-Information
-Update-FormatData -PrependPath "$PSScriptRoot\Aesthetic-Console.format.ps1xml"
-
-
-Function Format-AestheticConsole{
-    Param(
-        [Parameter(Mandatory, ValueFromPipeline)]
-        $fObj
-    )
-    if ($fObj.LinkType -eq "Junction" -or $fObj.LinkType -eq "SymbolicLink"){
-        Format-Link -Link $fObj
-    }
-    elseif ($fObj -is [System.IO.DirectoryInfo]) {
-        Format-Directory -Directory $fObj
-    }
-    else {
-        Format-File -File $fObj
-    }
+if((($global:PathToIconPreferences) -and ($global:PathToColorPreferences)) -or
+    (Test-Path $global:PathToIconPreferences)-and (Test-Path $global:PathToColorPreferences)){
+    Set-Information
+    Update-FormatData -PrependPath "$PSScriptRoot\Aesthetic-Console.format.ps1xml"
 }
-
-Function Print {
-    Format-AestheticConsole -fObj (Get-Item "C:\Users\adi\Cookies " -Force)
+else {
+    Write-Output ($PSStyle.Foreground.Green+"Paths cannot be resolved because either or both are invalid. You should probably try running Set-IconsPath and Set-ColorsPath again" )
 }

@@ -23,7 +23,6 @@ https://github.com/DHowett/DirColors -->
                             <Frame>
                                 <LeftIndent>4</LeftIndent>
                                 <CustomItem>
-                                    <!-- <Text AssemblyName="System.Management.Automation" BaseName="FileSystemProviderStrings" ResourceId="DirectoryDisplayGrouping"/> -->
                                     <Text >  : </Text>
                                     <ExpressionBinding>
                                         <ScriptBlock>
@@ -96,6 +95,8 @@ https://github.com/DHowett/DirColors -->
                 </TableRowEntries>
             </TableControl>
         </View>
+
+
         <View>
             <Name>children</Name>
             <ViewSelectedBy>
@@ -114,7 +115,7 @@ https://github.com/DHowett/DirColors -->
                         <ListItems>
                             <ListItem>
                                 <Label>Name</Label>
-                                <ScriptBlock> 
+                                <ScriptBlock>
                                     Aesthetic-Console\Format-AestheticConsole -fObj $_
                                 </ScriptBlock>
                             </ListItem>
@@ -178,6 +179,8 @@ https://github.com/DHowett/DirColors -->
                 </ListEntries>
             </ListControl>
         </View>
+
+
         <View>
             <Name>children</Name>
             <ViewSelectedBy>
@@ -209,6 +212,8 @@ https://github.com/DHowett/DirColors -->
                 </WideEntries>
             </WideControl>
         </View>
+
+        
     </ViewDefinitions>
 </Configuration>
 

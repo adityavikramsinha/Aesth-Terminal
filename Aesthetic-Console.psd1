@@ -12,8 +12,7 @@
         'Set-Information',
         'Format-AestheticConsole',
         'Set-IconsPath',
-        'Set-ColorsPath',
-        'Get-UserPreferences'
+        'Set-ColorsPath'
     )
     # Will have to get this from the github repo
     PrivateData = @()
