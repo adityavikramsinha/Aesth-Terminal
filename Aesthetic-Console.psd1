@@ -10,7 +10,10 @@
     AliasesToExport   = @()
     FunctionsToExport = @(
         'Set-Information',
-        'Format-AestheticConsole'
+        'Format-AestheticConsole',
+        'Set-IconsPath',
+        'Set-ColorsPath',
+        'Get-UserPreferences'
     )
     # Will have to get this from the github repo
     PrivateData = @()

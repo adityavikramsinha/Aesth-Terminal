@@ -7,12 +7,12 @@ Function Format-AestheticConsole {
         $fObj
     )
     if ($fObj.LinkType -eq "Junction" -or $fObj.LinkType -eq "SymbolicLink") {
-        Format-Link -Link $fObj
+        return Format-Link -Link $fObj
     }
     elseif ($fObj -is [System.IO.DirectoryInfo]) {
-        Format-Directory -Directory $fObj
+        return Format-Directory -Directory $fObj
     }
     else {
-        Format-File -File $fObj
+        return Format-File -File $fObj
     }
 }
