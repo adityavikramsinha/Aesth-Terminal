@@ -12,7 +12,8 @@
         'Set-Information',
         'Format-AestheticConsole',
         'Set-IconsPath',
-        'Set-ColorsPath'
+        'Set-ColorsPath',
+        'Test-ThemeFormat'
     )
     # Will have to get this from the github repo
     PrivateData = @()
