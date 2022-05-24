@@ -1,0 +1,144 @@
+{
+  "Format": "{0,-7} {1,25} {2,15} {3}",
+  "Filters":{
+    "junction": "",
+    "symlink": "",
+    "Directories": {
+      "default": "",
+      "src": "שׂ",
+      "projects": "",
+      "development": "ﮕ",
+      "bin": "",
+      "tests": "ﭧ",
+      "users": "",
+      "logs": "",
+      "temp": "",
+      ".config": "",
+      ".cache": "",
+      ".vscode": "﬏",
+      ".git": "",
+      ".github": "",
+      "github": "",
+      "node_modules": "",
+      ".idea": "",
+
+      ".docker": ""
+    },
+
+    "Files": {
+      "default": "",
+      ".gitattributes": "",
+      ".gitignore": "",
+      ".gitmodules": "",
+      "git-history": "",
+      ".gitconfig": "",
+      "LICENSE": "",
+      "LICENSE.md": "",
+      "LICENSE.txt": "",
+      "README.md": "識",
+      "READEME.txt": "識",
+      ".tsbuildinfo": "ﯤ",
+      "tsconfig.json": "ﯤ",
+      "composer.lock": "",
+      "composer.json": "",
+      "clang-format": "ﭱ",
+      "clang-tidy": "ﭱ",
+
+      "firebase.json": "",
+      "firebaserc": "",
+
+      "code_of_conduct.md": "",
+      "code_of_conduct.txt": "",
+
+      "Dockerfile": "",
+
+      "package.json": "ﬥ",
+      "package-lock.json": "",
+
+      ".gz": "",
+      ".zip": "",
+      ".tar": "",
+      ".bz2": "",
+      ".xz": "",
+      ".rar": "",
+      ".7z": "",
+
+      ".png": "",
+      ".jpg": "",
+      ".jpeg": "",
+      ".gif": "",
+      ".bmp": "",
+      ".ico": "",
+      ".svg": "",
+      ".webp": "",
+
+      ".exe": "ﬓ",
+      ".cmd": "",
+      ".bat": "",
+      ".pl": "",
+      ".sh": "",
+
+      ".java": "",
+
+      ".jar": "",
+
+      ".cpp": "",
+      ".c": "",
+
+      ".cxx": "",
+
+      ".jsx": "",
+      ".tsx": "",
+
+      ".js": "",
+      ".ts": "ﯤ",
+
+      ".json": "",
+
+      ".txt": "",
+      ".md": "",
+      ".log": "",
+
+      ".xls": "",
+      ".xlsx": "",
+
+      ".ppt": "",
+      ".pptx": "",
+      ".pptm": "",
+
+      ".doc": "",
+      ".docx": "",
+      ".docm": "",
+
+      ".mp3": "",
+      ".wav": "",
+      ".aiff": "辶",
+      ".aif": "",
+      ".au": "",
+
+      ".mp4": "",
+
+      ".iso": "",
+      ".img": "",
+
+      ".html": "",
+      ".htm": "",
+      ".xhtml": "",
+      ".xml": "",
+
+      ".css": "",
+      ".scss": "",
+      ".sass": "",
+      ".less": "",
+
+      ".py": "",
+
+      ".rs": "",
+
+      "yaml": "",
+      "yml": "",
+
+      ".ini" :""
+    }
+  }
+}

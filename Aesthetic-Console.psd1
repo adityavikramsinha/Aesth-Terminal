@@ -13,7 +13,8 @@
         'Format-AestheticConsole',
         'Set-IconsPath',
         'Set-ColorsPath',
-        'Test-ThemeFormat'
+        'Test-ThemeFormat',
+        'Install-AestheticConsole'
     )
 
     # Gave an error when I tried to put the values.

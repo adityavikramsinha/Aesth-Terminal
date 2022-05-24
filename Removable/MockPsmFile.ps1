@@ -1,4 +1,4 @@
-# Setting up the module root, this will help in
+﻿# Setting up the module root, this will help in
 # associating qualified[absolute] paths in a
 # relative fashion,
 $global:AestheticConsoleModuleRoot = $PSScriptRoot
@@ -15,7 +15,6 @@ ForEach-Object -Process {
 # Importing the utility function to help
 # with pre-processing user information
 . "${PSScriptRoot}\Private\ParseToANSI.ps1"
-# . "${PSScriptRoot}\Removable\Install-AestheticConsole.ps1"
 
 # Path to the Icon Preferences for the current User
 $global:PathToIconPreferences
@@ -203,5 +202,3 @@ else {
     Paths cannot be resolved because either or both are invalid. You should probably try running Set-IconsPath and Set-ColorsPath again
 "@)
 }
-# This has come from MockPsmFile.ps1
-
