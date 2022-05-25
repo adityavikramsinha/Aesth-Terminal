@@ -14,7 +14,6 @@
     $Root = $Root.Replace('\Removable' , '')
     $FreshContent = (Get-Content -Path "$Root\Removable\MockPsmFile.ps1" -Raw )
     $FreshContent > "$Root\Aesthetic-Console.psm1"
-    Remove-Item -Path "$Root\Removable\MockPsmFile.ps1"
 
     $UserInfoHashTable= @{
         "PathToIcons" = "$Root\DefaultThemes\blackjackIcons.json"
@@ -24,6 +23,6 @@
     ($UserInfoHashTable | ConvertTo-Json ) > "$Root\Public\UserInfo.json"
 
     Write-Output ($PSStyle.Foreground.Green +"We have succesfully installed the Module Aesthetic-Console")
-    Remove-Item -Path  "$Root\Removable\" -Recurse
+    # Remove-Item -Path  "$Root\Removable\" -Recurse
 
 }

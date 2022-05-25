@@ -11,10 +11,10 @@
     FunctionsToExport = @(
         'Set-Information',
         'Format-AestheticConsole',
-        'Set-IconsPath',
-        'Set-ColorsPath',
+        'Set-PreferencesPath',
         'Test-ThemeFormat',
-        'Install-AestheticConsole'
+        'Install-AestheticConsole',
+        'Format-UserData'
     )
 
     # Gave an error when I tried to put the values.

@@ -14,7 +14,7 @@ ForEach-Object -Process {
 
 # Importing the utility function to help
 # with pre-processing user information
-. "${PSScriptRoot}\Private\ParseToANSI.ps1"
+. "${PSScriptRoot}\Private\Format-UserData.ps1"
 
 # Path to the Icon Preferences for the current User
 $global:PathToIconPreferences
@@ -48,7 +48,7 @@ Function Set-Information {
         $global:AestheticConsoleColors = ( Get-Content -Path $PathToColorPreferences) | ConvertFrom-Json -AsHashtable
 
         # Parse The Hashtable from RGB to ANSI
-        ParseToANSI($global:AestheticConsoleColors)
+        Format-UserData -table ($global:AestheticConsoleColors)
     }
 
     # Writes the Error to the console.

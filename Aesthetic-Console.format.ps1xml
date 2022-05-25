@@ -85,9 +85,9 @@ https://github.com/DHowett/DirColors -->
                             <TableColumnItem>
                                 <PropertyName>Length</PropertyName>
                             </TableColumnItem>
-                            <TableColumnItem>
+                            <TableColumnItem> 
                                 <ScriptBlock>
-                                    Aesthetic-Console\Format-AestheticConsole -fObj $_
+                                    Aesthetic-Console\Format-AestheticConsole  $_
                                 </ScriptBlock>
                             </TableColumnItem>
                         </TableColumnItems>
@@ -116,7 +116,7 @@ https://github.com/DHowett/DirColors -->
                             <ListItem>
                                 <Label>Name</Label>
                                 <ScriptBlock>
-                                    Aesthetic-Console\Format-AestheticConsole -fObj $_
+                                    Aesthetic-Console\Format-AestheticConsole  $_
                                 </ScriptBlock>
                             </ListItem>
                             <ListItem>
@@ -140,7 +140,7 @@ https://github.com/DHowett/DirColors -->
                             <ListItem>
                                 <Label>Target</Label>
                                 <ScriptBlock>
-                                    Aesthetic-Console\Format-AestheticConsole -fObj $_
+                                    Aesthetic-Console\Format-AestheticConsole  $_
                                 </ScriptBlock>
                             </ListItem>
                         </ListItems>
@@ -150,7 +150,7 @@ https://github.com/DHowett/DirColors -->
                             <ListItem>
                                 <Label>Name</Label>
                                 <ScriptBlock>
-                                    Aesthetic-Console\Format-AestheticConsole -fObj $_
+                                    Aesthetic-Console\Format-AestheticConsole  $_
                                 </ScriptBlock>
                             </ListItem>
                             <ListItem>
@@ -171,7 +171,7 @@ https://github.com/DHowett/DirColors -->
                             <ListItem>
                                 <Label>Target</Label>
                                 <ScriptBlock>
-                                Aesthetic-Console\Format-AestheticConsole -fObj $_
+                                Aesthetic-Console\Format-AestheticConsole  $_
                                 </ScriptBlock>
                             </ListItem>
                         </ListItems>
@@ -195,7 +195,7 @@ https://github.com/DHowett/DirColors -->
                     <WideEntry>
                         <WideItem>
                             <ScriptBlock>
-                                Aesthetic-Console\Format-AestheticConsole -fObj $_
+                                Aesthetic-Console\Format-AestheticConsole  $_
                             </ScriptBlock>
                         </WideItem>
                     </WideEntry>
@@ -205,7 +205,7 @@ https://github.com/DHowett/DirColors -->
                         </EntrySelectedBy>
                         <WideItem>
                             <ScriptBlock>
-                                Aesthetic-Console\Format-AestheticConsole -fObj $_
+                                Aesthetic-Console\Format-AestheticConsole  $_
                             </ScriptBlock>
                         </WideItem>
                     </WideEntry>
@@ -213,7 +213,7 @@ https://github.com/DHowett/DirColors -->
             </WideControl>
         </View>
 
-        
+
     </ViewDefinitions>
 </Configuration>
 

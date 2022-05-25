@@ -14,21 +14,13 @@ ForEach-Object -Process {
 
 # Importing the utility function to help
 # with pre-processing user information
-. "${PSScriptRoot}\Private\ParseToANSI.ps1"
-# . "${PSScriptRoot}\Removable\Install-AestheticConsole.ps1"
+. "${PSScriptRoot}\Private\Format-UserData.ps1"
 
-# Path to the Icon Preferences for the current User
-$global:PathToIconPreferences
+# Hashtble representation of the json file containing the user data
+$global:AestheticConsolePreferences = @()
 
-# Path to the Color Preferences for the current User
-$global:PathToColorPreferences
-
-# HashTable containing all the Icons for Directories and Files are raw icons from NF (Nerd-Font)
-$global:AestheticConsoleIcons = @()
-
-# HashTable containing all the Colors for Directories and Files in RGB format
-$global:AestheticConsoleColors = @()
-
+# Path to the json file containing the user data
+$global:PathToPreferences
 
 # "Sets" the information for the current user.
 # The meaning of this statement is that,
@@ -45,11 +37,10 @@ Function Set-Information {
     # the JSON parser fails, we give the most-recent
     # Error message.
     try {
-        $global:AestheticConsoleIcons = ( Get-Content -Path $PathToIconPreferences) | ConvertFrom-Json -AsHashtable
-        $global:AestheticConsoleColors = ( Get-Content -Path $PathToColorPreferences) | ConvertFrom-Json -AsHashtable
+        $global:AestheticConsolePreferences = (Get-Content -Path $PathToPreferences ) | ConvertFrom-Json -AsHashtable
 
         # Parse The Hashtable from RGB to ANSI
-        ParseToANSI($global:AestheticConsoleColors)
+        Format-UserData -table ($global:AestheticConsolePreferences)
     }
 
     # Writes the Error to the console.
@@ -69,8 +60,7 @@ Function Set-UserPreferences {
     # current variable values [fresh or stale]
     # and then write them to the UserInfo.json file
     $UserHashTable = @{
-        "PathToIcons"  = "$global:PathToIconPreferences" ;
-        "PathToColors" = "$global:PathToColorPreferences"
+        "PathToPreferences" = "$global:PathToPreferences"
     }
     ( $UserHashTable | ConvertTo-JSON ) > "${PSScriptRoot}/Public/UserInfo.json"
 }
@@ -106,40 +96,7 @@ Function Get-UserPreferences {
     # The function gives an error.
     # If the function does not give an error, then we proceed and update
     # them.
-    $global:PathToIconPreferences = $UserHashTable["PathToIcons"]
-    $global:PathToColorPreferences = $userHashTable["PathToColors"]
-}
-
-
-# Sets the pointer for the icons preferences to a given path
-# This performs two checks, one to see if the path is valid and another
-# to check if the format of the JSON document in the path is valid using the
-# given json schema.
-# If all goes well then it will Print a success message
-# If not, it prints the error message for the error it encountered.
-Function Set-IconsPath {
-
-    # Fist take the "proposed" path from the user.
-    # Upon getting the path, we will try to first validate if it is correct
-    # Perform a simple check as to whether the path exists.
-    # Then it will check for a JSON-Schema based validation to match
-    # If it does, the $PathToIconPreferences is updated and a relevant message is given
-    # Then the whole information is written using the Set-UserPreferences function.
-    $CandidatePath = Read-Host -Prompt "Enter the path where the Icons customisation *.json is present"
-
-    # This is the green color. It is used for the valid path message.
-    $Successful = $PSStyle.Foreground.Green
-
-    if ( ( Test-Path -Path $CandidatePath ) -and ( Test-ThemeFormat -ThemePathToValidate $CandidatePath -NoMsg)) {
-        $global:PathToIconPreferences = $CandidatePath
-        Write-Output ($Successful + "Path of icon preferences succesfully to {0}" -f $global:PathToIconPreferences)
-        Set-UserPreferences
-    }
-
-    # If it has not been validated, we just write that the Path is not valid.
-    else {
-        Write-Error ("Path of icon preferences is not valid")
-    }
+    $global:PathToPreferences = $UserHashTable['PathToPreferences']
 }
 
 # Sets the pointer for the Color preferences to a given path
@@ -148,21 +105,21 @@ Function Set-IconsPath {
 # given json schema.
 # If all goes well then it will Print a success message
 # If not, it prints the error message for the error it encountered.
-Function Set-ColorsPath {
+Function Set-PreferencesPath {
 
     # Fist take the "proposed" path from the user.
     # Upon getting the path, we will try to first validate if it is correct
     # Perform a simple check as to whether the path exists.
     # If it does, the $PathToColorPreferences is updated and a relevant message is given
     # Then the whole information is written using the Set-UserPreferences function.
-    $CandidatePath = Read-Host -Prompt "Enter the path where the Icons customisation *.json is present"
+    $CandidatePath = Read-Host -Prompt "Enter the path where customisation file *.json is present"
 
     # This is the green color. It is used for the valid path message.
     $Successful = $PSStyle.Foreground.Green
 
     if ( ( Test-Path -Path $CandidatePath ) -and ( Test-ThemeFormat -ThemePathToValidate $CandidatePath -NoMsg)) {
-        $global:PathToColorPreferences = $CandidatePath
-        Write-Output ($Successful + "Path of icon preferences succesfully to {0}" -f $global:PathToColorPreferences)
+        $global:PathToPreferences = $CandidatePath
+        Write-Output ($Successful + "Path of icon preferences succesfully to {0}" -f $global:PathToPreferences)
         Set-UserPreferences
     }
 
@@ -181,15 +138,13 @@ Get-UserPreferences
 # After this, We will have to perform the necessary checks for the
 # theme we want to implement. The schema used has been given in the
 # Test-ThemeFormat Function.
-Test-ThemeFormat -ThemePathToValidate $global:PathToIconPreferences -NoMsg
-Test-ThemeFormat -ThemePathToValidate $global:PathToColorPreferences -NoMsg
+Test-ThemeFormat -ThemePathToValidate $global:PathToPreferences -NoMsg
 
 
 # Performing the necessary checks required for setting the information.
 # If all is fine, then it goes forward with its work and adds the *.format.ps1xml script.
 # It will also set the relevant information for the current preferences of the user
-if ((($global:PathToIconPreferences) -and ($global:PathToColorPreferences)) -or
-    (Test-Path $global:PathToIconPreferences) -and (Test-Path $global:PathToColorPreferences)) {
+if ((-not ($null -eq $global:PathToPreferences))-and (Test-Path $global:PathToPreferences)){
     Set-Information
     Update-FormatData -PrependPath "$PSScriptRoot\Aesthetic-Console.format.ps1xml"
 }
@@ -203,5 +158,4 @@ else {
     Paths cannot be resolved because either or both are invalid. You should probably try running Set-IconsPath and Set-ColorsPath again
 "@)
 }
-# This has come from MockPsmFile.ps1
 
