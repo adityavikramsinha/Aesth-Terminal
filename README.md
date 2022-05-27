@@ -43,4 +43,4 @@ _Note_: Giving a detailed log of the errors that popped up or any screenshots th
 - **Paste** : ```Install-AestheticConsole``` to the current instance of the Shell
 - Run the ```Get-ChildItem``` cmdlet and watch the output get formatted and enjoy hehe
 
-**Thankyou for reading till here, for more customization directly read the**
+**Thankyou for reading till here, for more customization directly read the [wiki](https://github.com/codeadityavs/Aesthetic-Console/wiki)**
