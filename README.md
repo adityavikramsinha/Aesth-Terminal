@@ -2,8 +2,14 @@
 This module helps to add **icons** , **styles** and **colors** to outputs from common cmdlets like _Get-ChildItem_ , _Get-Item_ and formatters like _Format-Table_ and   _Format-Wide_
 
 Below are a few screenshots illustrating what kind of output this can render :
-1. _When piping the output of a function into a pipeline_
-2. _When using Get-ChildItem [or any of its aliases]_
+
+_When used by piping the outputs of a Get-ChildItem command into the Format-AestheticConsole function_
+
+![When the output of Get-ChildItem is piped through the Format-AestheticConsole function](https://user-images.githubusercontent.com/85366995/170708520-ebdeda10-2a0e-4d5f-8771-f5bcea258787.png)
+
+_When used with a ls or Get-ChildItem command alias_
+
+![Output with get child item or any of its aliases](https://user-images.githubusercontent.com/85366995/170704533-f8d648df-f700-4a68-a9bc-56a28aea890a.png)
 
 ## Prerequisites
 - PowerShell 6.0 or higher is required (Preferably from the Microsoft store or some other place which can guarantee security)
