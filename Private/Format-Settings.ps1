@@ -16,11 +16,9 @@ Function Format-Settings{
     foreach($key in $($table.Keys)){
         if(-not($table[$key] -is [System.Collections.Hashtable])) {
             if($key -eq 'color'){
-                Write-Output 'in color'
                 $table[$key] = $(ConvertFrom-RGB ( $table[$key]) )
             }
             elseif($key -eq 'styles') {
-                Write-Output 'in styles'
                 for (($i = 0); $i -lt $table[$key].Length; ($i++)) {
                     $val = $table[$key][$i]
                     $table[$key][$i] = (ConvertFrom-Styles -style $val)
