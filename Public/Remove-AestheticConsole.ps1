@@ -13,6 +13,7 @@
     if($UserInput -eq "Y") {
         Remove-Item "$Root" -Recurse
         Write-Output ($PSStyle.Foreground.Green + "Uninstallation has been completed.Bye :(")
+        return
     }
     Write-Output "Eeeeh!Didnt delete it after all (:"
 }
