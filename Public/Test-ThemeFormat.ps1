@@ -95,16 +95,12 @@
   ]
 }
 '@
-    try{
-        $InvestigationConclusion = ( Test-Json -Json (Get-Content $ThemePathToValidate -Raw ) -Schema $Schema )
-        if($NoMsg){
+    if(Test-Json -Json (Get-Content $ThemePathToValidate -Raw ) -Schema $Schema ){
+        if ($NoMsg) {
             return $true
         }
-        else{
-            Write-Output ($PSStyle.Foreground.Green+"YAY!!The theme is ready to be implemented" )
+        else {
+            Write-Output ($PSStyle.Foreground.Green + "YAY!!The theme is ready to be implemented" )
         }
-    }
-    catch{
-        Write-Output "Could not process the file because of a system error. "
     }
 }

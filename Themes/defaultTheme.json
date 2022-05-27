@@ -1,0 +1,571 @@
+﻿
+/**
+Note, this file is a JSON file with comments.
+It does not adhere to the ECMA specification given.
+This decision to have JSON with comoments was taken so that,
+it is easier to explain the "fragments" or blocks of code that,
+make up the cusomisation json file.
+
+This file is parseable by the powershell parser but,
+there is no guarantee that all JSON parsers will be able to parse this file.
+Thus, if there is a need to transport this file from its original location
+to another one because of changing parsers, it is advised that the comments be
+stripped off.
+
+Objects which have an /**[another forward slash] in front of them are not remoavable,
+This means that they have to be included in the JSON config file.
+*/
+{
+    // This is the starting object, it is a set of "filter options"
+    // The engine looks at this object to understand the categories it needs
+    // to filter. Filter holds a set of required objects. If the objects in this
+    // are removed "say Links is removed, then the engine will halt and give a schema error".
+    // Adding more filters is not something the engine supports and, it is something that
+    // the engine tries to fight against. This is mainly because files and folders
+    // are grouped according to the type they hold in the System in Windows.
+    "Filters": {
+
+        // These are the Links part of the System. Basically , the symbolic links and junction
+        // types in Windows
+        "Links": {
+
+            // Junction section of the Link.
+            "junction": {
+                // Says if the
+                "full_name" :true ,
+                "icon": "",
+                "color": "#7373FF",
+                "styles": [
+                    "underlined"
+                ]
+            },
+            "symlink": {
+                "icon": "",
+                "color": "#7373FF"
+            },
+            "default": {
+                "icon": "",
+                "color": "#7373FF"
+            }
+        },
+        "Files": {
+            "composer.json": {
+                "color": "#FFFFB5",
+                "icon": ""
+            },
+            ".npmrc": {
+                "color": "#00BFFF"
+            },
+            ".iso": {
+                "color": "#E1E3E6",
+                "icon": ""
+            },
+            ".gitignore": {
+                "color": "#FF4500",
+                "icon": ""
+            },
+            "docker-compose-dev.yaml": {
+                "color": "#FF968A"
+            },
+            "code_of_conduct.md": {
+                "color": "#FFFFE0",
+                "icon": ""
+            },
+            ".ini": {
+                "color": "#EBCFC4",
+                "icon": ""
+            },
+            ".xz": {
+                "color": "#DAA520",
+                "icon": ""
+            },
+            ".jsx": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            ".7z": {
+                "color": "#DAA520",
+                "icon": ""
+            },
+            ".jpeg": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            ".exe": {
+                "color": "#00FA9A",
+                "icon": "ﬓ"
+            },
+            ".hxx": {
+                "color": "#F6EAC2"
+            },
+            ".doc": {
+                "color": "#00BFFF",
+                "icon": ""
+            },
+            ".cpp": {
+                "color": "#A9A9A9",
+                "icon": ""
+            },
+            ".yaml": {
+                "color": "#FF6347"
+            },
+            ".md": {
+                "color": "#00BFFF",
+                "icon": ""
+            },
+            ".gitconfig": {
+                "color": "#FF4500",
+                "icon": ""
+            },
+            ".cmd": {
+                "color": "#008000",
+                "icon": ""
+            },
+            ".bmp": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            ".webp": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            "authors.md": {
+                "color": "#FF6347"
+            },
+            ".mp3": {
+                "color": "#DB7093",
+                "icon": ""
+            },
+            ".wmv": {
+                "color": "#FFA500"
+            },
+            ".sh": {
+                "color": "#FF4500",
+                "icon": ""
+            },
+            ".xslt": {
+                "color": "#98FB98"
+            },
+            ".mpeg": {
+                "color": "#FFA500"
+            },
+            ".vhd": {
+                "color": "#E1E3E6"
+            },
+            "git-history": {
+                "color": "#FF4500",
+                "icon": ""
+            },
+            ".npmignore": {
+                "color": "#00BFFF"
+            },
+            ".jar": {
+                "color": "#F89820",
+                "icon": ""
+            },
+            ".xhtml": {
+                "color": "#CD5C5C",
+                "icon": ""
+            },
+            ".ppt": {
+                "color": "#DC143C",
+                "icon": ""
+            },
+            ".hpp": {
+                "color": "#F6EAC2"
+            },
+            ".tar": {
+                "color": "#DAA520",
+                "icon": ""
+            },
+            ".tsx": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            "package-lock.json": {
+                "color": "#6B8E23",
+                "icon": ""
+            },
+            ".rar": {
+                "color": "#DAA520",
+                "icon": ""
+            },
+            "Dockerfile": {
+                "color": "#46824B",
+                "icon": ""
+            },
+            "docker-compose-dev.yml": {
+                "color": "#46824B"
+            },
+            ".gz": {
+                "color": "#DAA520",
+                "icon": ""
+            },
+            "docker-compose-prod.yml": {
+                "color": "#46824B"
+            },
+            ".img": {
+                "color": "#E1E3E6",
+                "icon": ""
+            },
+            ".mov": {
+                "color": "#FFA500"
+            },
+            "docker-compose-test.yml": {
+                "color": "#46824B"
+            },
+            "LICENSE": {
+                "color": "#CD5C5C",
+                "icon": ""
+            },
+            ".gitattributes": {
+                "color": "#FF4500",
+                "icon": ""
+            },
+            ".docm": {
+                "color": "#00BFFF",
+                "icon": ""
+            },
+            ".pl": {
+                "color": "#8A2BE2",
+                "icon": ""
+            },
+            "docker-compose-prod.yaml": {
+                "color": "#FF968A"
+            },
+            "docker-compose.yaml": {
+                "color": "#46824B"
+            },
+            "docker-compose.override.yaml": {
+                "color": "#FF968A"
+            },
+            ".docx": {
+                "color": "#00BFFF",
+                "icon": ""
+            },
+            ".esmrc": {
+                "color": "#6B8E23"
+            },
+            ".ico": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            "LICENSE.md": {
+                "color": "#CD5C5C",
+                "icon": ""
+            },
+            "code_of_conduct.txt": {
+                "color": "#FFFFE0",
+                "icon": ""
+            },
+            "firebase.json": {
+                "color": "#FFA500",
+                "icon": ""
+            },
+            ".xlsx": {
+                "color": "#9ACD32",
+                "icon": ""
+            },
+            ".pptx": {
+                "color": "#DC143C",
+                "icon": ""
+            },
+            "README.md": {
+                "color": "#00FFFF",
+                "icon": "識"
+            },
+            ".flv": {
+                "color": "#FFA500"
+            },
+            ".class": {
+                "color": "#FFDBCC"
+            },
+            ".vdi": {
+                "color": "#E1E3E6"
+            },
+            "package.json": {
+                "color": "#6B8E23",
+                "icon": "ﬥ"
+            },
+            ".vmdk": {
+                "color": "#E1E3E6"
+            },
+            ".jpg": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            "clang-tidy": {
+                "color": "#87CEEB",
+                "icon": "ﭱ"
+            },
+            ".mp4": {
+                "color": "#FFA500",
+                "icon": ""
+            },
+            ".sass": {
+                "color": "#FF00FF",
+                "icon": ""
+            },
+            ".bat": {
+                "color": "#008000",
+                "icon": ""
+            },
+            ".txt": {
+                "color": "#00CED1",
+                "icon": ""
+            },
+            ".nvmrc": {
+                "color": "#6B8E23"
+            },
+            ".mpg": {
+                "color": "#FFA500"
+            },
+            ".zip": {
+                "color": "#DAA520",
+                "icon": ""
+            },
+            "authors": {
+                "color": "#FF6347"
+            },
+            "docker-compose.yml": {
+                "color": "#46824B"
+            },
+            ".aiff": {
+                "color": "#DB7093",
+                "icon": "辶"
+            },
+            "tsconfig.json": {
+                "color": "#F4A460",
+                "icon": "ﯤ"
+            },
+            "docker-compose-test.yaml": {
+                "color": "#FF968A"
+            },
+            ".yml": {
+                "color": "#FF6347"
+            },
+            ".gitmodules": {
+                "color": "#FF4500",
+                "icon": ""
+            },
+            "READEME.txt": {
+                "color": "#00FFFF",
+                "icon": "識"
+            },
+            ".js": {
+                "color": "#F0E68C",
+                "icon": ""
+            },
+            ".json": {
+                "color": "#FFD700",
+                "icon": ""
+            },
+            ".xsd": {
+                "color": "#98FB98"
+            },
+            "clang-format": {
+                "color": "#87CEEB",
+                "icon": "ﭱ"
+            },
+            ".less": {
+                "color": "#6B8E23",
+                "icon": ""
+            },
+            "LICENSE.txt": {
+                "color": "#CD5C5C",
+                "icon": ""
+            },
+            ".htm": {
+                "color": "#CD5C5C",
+                "icon": ""
+            },
+            ".scss": {
+                "color": "#FF00FF",
+                "icon": ""
+            },
+            ".xml": {
+                "color": "#98FB98",
+                "icon": ""
+            },
+            ".xsl": {
+                "color": "#98FB98"
+            },
+            ".svg": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            ".gif": {
+                "color": "#20B2AA",
+                "icon": ""
+            },
+            ".c": {
+                "color": "#A9A9A9",
+                "icon": ""
+            },
+            ".aif": {
+                "color": "#DB7093",
+                "icon": ""
+            },
+            ".xls": {
+                "color": "#9ACD32",
+                "icon": ""
+            },
+            ".pptm": {
+                "color": "#DC143C",
+                "icon": ""
+            },
+            "default": {
+                "color": "#FFFFFF",
+                "icon": ""
+            },
+            ".css": {
+                "color": "#C87CEF",
+                "icon": ""
+            },
+            ".cxx": {
+                "color": "#A9A9A9",
+                "icon": ""
+            },
+            ".bz2": {
+                "color": "#97C1A9",
+                "icon": ""
+            },
+            "docker-compose.override.yml": {
+                "color": "#46824B"
+            },
+            "firebaserc": {
+                "color": "#FFA500",
+                "icon": ""
+            },
+            ".py": {
+                "color": "#ECE3A1",
+                "icon": ""
+            },
+            ".html": {
+                "color": "#CD5C5C",
+                "icon": ""
+            },
+            ".ps1": {
+                "color": "#EECC90"
+            },
+            ".h": {
+                "color": "#F6EAC2"
+            },
+            ".ts": {
+                "color": "#F0E68C",
+                "icon": "ﯤ"
+            },
+            "authors.txt": {
+                "color": "#FF6347"
+            },
+            ".tsbuildinfo": {
+                "color": "#F4A460",
+                "icon": "ﯤ"
+            },
+            ".java": {
+                "color": "#F89820",
+                "icon": ""
+            },
+            ".au": {
+                "color": "#DB7093",
+                "icon": ""
+            },
+            ".log": {
+                "color": "#F0E68C",
+                "icon": ""
+            },
+            ".avi": {
+                "color": "#FFA500"
+            },
+            "composer.lock": {
+                "color": "#F4A460",
+                "icon": ""
+            },
+            ".wav": {
+                "color": "#DB7093",
+                "icon": ""
+            },
+            ".png": {
+                "color": "#20B2AA",
+                "icon": ""
+            }
+        },
+        "Directories": {
+            "logs": {
+                "color": "#ABDEE6",
+                "icon": ""
+            },
+            "github": {
+                "color": "#C0C0C0",
+                "icon": ""
+            },
+            ".git": {
+                "color": "#FF4500",
+                "icon": ""
+            },
+            ".github": {
+                "color": "#C0C0C0",
+                "icon": ""
+            },
+            "temp": {
+                "color": "#FF968A",
+                "icon": ""
+            },
+            ".docker": {
+                "color": "#2391E6",
+                "icon": ""
+            },
+            ".idea": {
+                "color": "#EAD7C3",
+                "icon": ""
+            },
+            ".vscode": {
+                "color": "#87CEFA",
+                "icon": "﬏"
+            },
+            "bin": {
+                "color": "#00FF7F",
+                "icon": ""
+            },
+            "node_modules": {
+                "color": "#6B8E23",
+                "icon": ""
+            },
+            "development": {
+                "color": "#00FF7F",
+                "icon": "ﮕ"
+            },
+            ".kube": {
+                "color": "#326DE6"
+            },
+            "users": {
+                "color": "#F4F4F4",
+                "icon": ""
+            },
+            ".config": {
+                "color": "#87CEAF",
+                "icon": ""
+            },
+            "default": {
+                "color": "#BEAFE1",
+                "icon": ""
+            },
+            "src": {
+                "color": "#00FF7F",
+                "icon": "שׂ"
+            },
+            ".cache": {
+                "color": "#87CEAF",
+                "icon": ""
+            },
+            "projects": {
+                "color": "#00FF7F",
+                "icon": ""
+            },
+            "tests": {
+                "color": "#87CEEB",
+                "icon": "ﭧ"
+            }
+        }
+    }
+}

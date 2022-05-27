@@ -14,7 +14,7 @@ ForEach-Object -Process {
 
 # Importing the utility function to help
 # with pre-processing user information
-. "${PSScriptRoot}\Private\Format-UserData.ps1"
+. "${PSScriptRoot}\Private\Format-Settings.ps1"
 
 # Hashtble representation of the json file containing the user data
 $global:AestheticConsolePreferences = @()
@@ -40,7 +40,7 @@ Function Set-Information {
         $global:AestheticConsolePreferences = (Get-Content -Path $PathToPreferences ) | ConvertFrom-Json -AsHashtable
 
         # Parse The Hashtable from RGB to ANSI
-        Format-UserData -table ($global:AestheticConsolePreferences)
+        Format-Settings -table $AestheticConsolePreferences.Filters
     }
 
     # Writes the Error to the console.
@@ -62,7 +62,7 @@ Function Set-UserPreferences {
     $UserHashTable = @{
         "PathToPreferences" = "$global:PathToPreferences"
     }
-    ( $UserHashTable | ConvertTo-JSON ) > "${PSScriptRoot}/Public/UserInfo.json"
+    ( $UserHashTable | ConvertTo-JSON ) > "${PSScriptRoot}/Public/settings.json"
 }
 
 
@@ -81,12 +81,12 @@ Function Get-UserPreferences {
     # Both of these are taken care of, since relevant information
     # and error messages are printed to the console.
     try {
-        $UserHashTable = ( Get-Content "${PSScriptRoot}/Public/UserInfo.json" )  | ConvertFrom-JSON -AsHashtable
+        $UserHashTable = ( Get-Content "${PSScriptRoot}/Public/settings.json" )  | ConvertFrom-JSON -AsHashtable
     }
 
     # Catch the error and print a relevant message to the Console.
     catch {
-        [string]$Message = "There was an issue trying to parse ${PSScriptRoot}/Public/UserInfo.json file."
+        [string]$Message = "There was an issue while trying to parse ${PSScriptRoot}/Public/settings.json file."
         [string]$Recommendation = "The file might not be present or,may have been corrupted with information not parseable."
         Write-Error -Message $Message -RecommendedAction $Recommendation
         return
@@ -119,13 +119,13 @@ Function Set-PreferencesPath {
 
     if ( ( Test-Path -Path $CandidatePath ) -and ( Test-ThemeFormat -ThemePathToValidate $CandidatePath -NoMsg)) {
         $global:PathToPreferences = $CandidatePath
-        Write-Output ($Successful + "Path of icon preferences succesfully to {0}" -f $global:PathToPreferences)
+        Write-Output ($Successful + "Path for customisation preferences changed succesfully to {0}" -f $global:PathToPreferences)
         Set-UserPreferences
     }
 
     # If it has not been validated, we just write that the Path is not valid.
     else {
-        Write-Error ("Path of color preferences is not valid")
+        Write-Error ("Path of color preferences is not valid or, the schema is not valid in the .json file")
     }
 }
 

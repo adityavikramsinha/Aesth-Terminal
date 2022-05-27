@@ -14,7 +14,7 @@
         'Set-PreferencesPath',
         'Test-ThemeFormat',
         'Install-AestheticConsole',
-        'Format-UserData'
+        'Format-Settings'
     )
 
     # Gave an error when I tried to put the values.

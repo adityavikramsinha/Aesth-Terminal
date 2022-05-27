@@ -16,11 +16,11 @@
     $FreshContent > "$Root\Aesthetic-Console.psm1"
 
     $UserInfoHashTable= @{
-        "PathToIcons" = "$Root\DefaultThemes\blackjackIcons.json"
-        "PathToColors" = "$Root\DefaultThemes\blackjackColors.json"
+        "PathToIcons" = "$Root\Themes\defaultIcons.json"
+        "PathToColors" = "$Root\Themes\defaultColors.json"
     }
 
-    ($UserInfoHashTable | ConvertTo-Json ) > "$Root\Public\UserInfo.json"
+    ($UserInfoHashTable | ConvertTo-Json ) > "$Root\Public\settings.json"
 
     Write-Output ($PSStyle.Foreground.Green +"We have succesfully installed the Module Aesthetic-Console")
     # Remove-Item -Path  "$Root\Removable\" -Recurse
