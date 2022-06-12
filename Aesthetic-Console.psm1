@@ -7,14 +7,17 @@ $global:AestheticConsoleModuleRoot = $PSScriptRoot
 # Import all the public scripts required from the
 # Public Folder. This does not include the JSON
 # File.
-Get-ChildItem -Path "${PSScriptRoot}\Public\" |
+Get-ChildItem -Path "${PSScriptRoot}\Public\" -Recurse |
 ForEach-Object -Process {
-    . $_.FullName
+    if(-not ($_ -is [System.IO.DirectoryInfo]) -and ($_.Extension.Equals('.ps1'))){
+        . $_.FullName
+    }
 }
 
 # Importing the utility function to help
 # with pre-processing user information
 . "${PSScriptRoot}\Private\Format-Settings.ps1"
+. "${PSScriptRoot}\Removable\Install-AestheticConsole.ps1"
 
 # Hashtble representation of the json file containing the user data
 $global:AestheticConsolePreferences = @()
@@ -22,14 +25,32 @@ $global:AestheticConsolePreferences = @()
 # Path to the json file containing the user data
 $global:PathToPreferences
 
-# "Sets" the information for the current user.
-# The meaning of this statement is that,
-# global variables like AestheticConsoleIcons and AestheticConsoleColors
-# will have different or same values depending on the contents of the JSON file
-# which is being pointed to at by the global variable PathToIconPreferences and
-# PathToColorPreferences.
-# It then, pre-computes the color preferences to their ANSI equivalent.
-# If any error is found, a message is displayed.
+<#
+
+.SYNOPSIS
+Sets the hashtable which will be used as a lookup table to find the
+colors styles and other things for a particular object
+
+.DESCRIPTION
+"Sets" the information for the current user.
+The meaning of this statement is that,
+global variables like AestheticConsoleIcons and AestheticConsoleColors
+will have different or same values depending on the contents of the JSON file
+which is being pointed to at by the global variable PathToIconPreferences and
+PathToColorPreferences.
+It then, pre-computes the color preferences to their ANSI equivalent.
+If any error is found, a message is displayed.
+
+.INPUTS
+Nothing
+
+.OUTPUTS
+Nothing, but it does internally change the value of the global aesthetic console preference
+hashtable
+
+.EXAMPLE
+Set-Information
+#>
 Function Set-Information {
 
     # First we try to put in all the valid information
@@ -49,11 +70,28 @@ Function Set-Information {
     }
 }
 
+<#
 
-# Updates the UserInfo.json file present in the
-# Public folder. This will just write the
-# given Path variables as a JSON which can later
-# be parsed by the Get-UserPreferences function
+.SYNOPSIS
+Sets the path in which the customisation.json file
+is stored
+
+.DESCRIPTION
+Updates the UserInfo.json file present in the
+Public folder. This will just write the
+given Path variables as a JSON which can later
+be parsed by the Get-UserPreferences function
+
+.INPUTS
+Nothing
+
+.OUTPUTS
+Nothing,internally changes and updated the setting.json file
+
+.EXAMPLE
+Set-UserPreferences
+
+#>
 Function Set-UserPreferences {
 
     # Construct a temporary hashtable with the
@@ -65,11 +103,29 @@ Function Set-UserPreferences {
     ( $UserHashTable | ConvertTo-JSON ) > "${PSScriptRoot}/Public/settings.json"
 }
 
+<#
 
-# "Gets" the preferences of the user
-# The logic is simple. It will try to load the resources
-# Upon success it simply updates the variables to their new value
-# If there is an error, it prints it to the console and returns.
+.SYNOPSIS
+Makes a hashtable containing the user preferences and ,
+updates the path varuiables
+
+.DESCRIPTION
+"Gets" the preferences of the user
+The logic is simple. It will try to load the resources
+Upon success it simply updates the variables to their new value
+If there is an error, it prints it to the console and returns.
+
+.INPUTS
+Nothing
+
+.OUTPUTS
+Nothing, but internally changed or modifies or creates a hastable
+map for the given look up values.
+
+.EXAMPLE
+Get-userPreferences
+
+#>
 Function Get-UserPreferences {
 
     # Tries to load the "resource".
@@ -99,12 +155,29 @@ Function Get-UserPreferences {
     $global:PathToPreferences = $UserHashTable['PathToPreferences']
 }
 
-# Sets the pointer for the Color preferences to a given path
-# This performs two checks, one to see if the path is valid and another
-# to check if the format of the JSON document in the path is valid using the
-# given json schema.
-# If all goes well then it will Print a success message
-# If not, it prints the error message for the error it encountered.
+<#
+
+.SYNOPSIS
+Sets-thee preference path for the user preferences customisation.json file
+
+.DESCRIPTION
+Sets the pointer for the Color preferences to a given path
+This performs two checks, one to see if the path is valid and another
+to check if the format of the JSON document in the path is valid using the
+given json schema.
+If all goes well then it will Print a success message
+If not, it prints the error message for the error it encountered.
+
+.INPUTS
+Nothing
+
+.OUTPUTS
+Nothing
+
+.EXAMPLE
+Set-PreferencesPath
+
+#>
 Function Set-PreferencesPath {
 
     # Fist take the "proposed" path from the user.
@@ -144,7 +217,7 @@ Test-ThemeFormat -ThemePathToValidate $global:PathToPreferences -NoMsg
 # Performing the necessary checks required for setting the information.
 # If all is fine, then it goes forward with its work and adds the *.format.ps1xml script.
 # It will also set the relevant information for the current preferences of the user
-if ((-not ($null -eq $global:PathToPreferences))-and (Test-Path $global:PathToPreferences)){
+if ((-not($null -eq $global:PathToPreferences))-and (Test-Path $global:PathToPreferences)){
     Set-Information
     Update-FormatData -PrependPath "$PSScriptRoot\Aesthetic-Console.format.ps1xml"
 }
@@ -158,4 +231,3 @@ else {
     Paths cannot be resolved because either or both are invalid. You should probably try running Set-IconsPath and Set-ColorsPath again
 "@)
 }
-

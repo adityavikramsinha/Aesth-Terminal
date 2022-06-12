@@ -28,15 +28,13 @@ This means that they have to be included in the JSON config file.
         // These are the Links part of the System. Basically , the symbolic links and junction
         // types in Windows
         "Links": {
-
             // Junction section of the Link.
             "junction": {
                 // Says if the
-                "full_name" :true ,
                 "icon": "",
                 "color": "#7373FF",
                 "styles": [
-                    "underlined"
+                    "underline"
                 ]
             },
             "symlink": {
@@ -495,6 +493,62 @@ This means that they have to be included in the JSON config file.
                 "color": "#ABDEE6",
                 "icon": ""
             },
+            "WebstormProjects" : {
+                "color" : "#F4F186",
+                "icon" : ""
+            },
+            "Videos" : {
+                "icon" : "" ,
+                "color" : "#BC80C1"
+            },
+            "Searches" : {
+                "icon" : "" ,
+                "color" : "F38596"
+            },
+            "IdeaProjects" : {
+                "icon" : "" ,
+                "color" : "#6c7c93"
+            },
+            ".thumbnails" : {
+                "icon" : "" ,
+                "color" : "#80B692"
+            },
+            "Music" :{
+                "icon" : "" ,
+                "color" : "#90ee90"
+            },
+            "Pictures" : {
+                "icon" : "" ,
+                "color" : "#ACD1AF"
+            },
+            "Downloads" : {
+                "icon" : "" ,
+                "color" : "#F47174"
+            },
+            "Desktop" : {
+                "icon" : "" ,
+                "color" : "#F5CA7B"
+            } ,
+            "Documents" : {
+                "icon" : "" ,
+                "color" : "#C7E4EE"
+            },
+            "CLionProjects" : {
+                "icon": "",
+                "color" : "#EEEE9B"
+            },
+            ".dotnet" : {
+                "icon" : "" ,
+                "color" : "#FFB900"
+            },
+            "Links" : {
+                "icon" : "",
+                "color" : "#E2F0CB"
+            },
+            "git" : {
+                "color" : "#A0DEEE" ,
+                "icon" : ""
+            },
             "github": {
                 "color": "#C0C0C0",
                 "icon": ""
@@ -548,7 +602,7 @@ This means that they have to be included in the JSON config file.
             },
             "default": {
                 "color": "#BEAFE1",
-                "icon": ""
+                "icon": ""
             },
             "src": {
                 "color": "#00FF7F",
