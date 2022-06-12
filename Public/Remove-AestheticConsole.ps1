@@ -29,13 +29,13 @@ Function Remove-AestheticConsole{
     [String]$Root = ($PSScriptRoot).Replace('\Public' , '')
     [String]$UserInput = Read-Host "Type [Y]es to proceed with uninstallation. Default is [N]o"
 
-    # On no
+    # On Yes
     if($UserInput -eq "Y") {
         Remove-Item "$Root" -Recurse
         Write-Output ($PSStyle.Foreground.Yellow + "Uninstallation has been completed.Bye :(")
         return
     }
 
-    # on Yes
+    # on No
     Write-Output "$($PSStyle.Foreground.Green)Eeeeeeh!You did not uninstall after all :)"
 }
