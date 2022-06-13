@@ -7,9 +7,11 @@ $global:AestheticConsoleModuleRoot = $PSScriptRoot
 # Import all the public scripts required from the
 # Public Folder. This does not include the JSON
 # File.
-Get-ChildItem -Path "${PSScriptRoot}\Public\" |
+Get-ChildItem -Path "${PSScriptRoot}\Public\" -Recurse |
 ForEach-Object -Process {
-    . $_.FullName
+    if (-not ($_ -is [System.IO.DirectoryInfo]) -and ($_.Extension.Equals('.ps1'))) {
+        . $_.FullName
+    }
 }
 
 # Importing the utility function to help
